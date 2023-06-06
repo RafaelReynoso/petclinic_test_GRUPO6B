@@ -3,8 +3,12 @@ package com.tecsup.petclinic.services;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 class VetServiceTest {
+	
+	@Autowired
+    private PetService petService;
 
 	@Test
 	void testCreate() {

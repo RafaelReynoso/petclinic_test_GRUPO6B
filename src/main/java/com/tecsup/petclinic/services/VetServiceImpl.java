@@ -48,7 +48,10 @@ public class VetServiceImpl implements VetService{
      */
     @Override
     public void delete(Integer id) throws VetNotFoundException {
-
+    	
+    	Vet vet = findById(id);
+		vetRepository.delete(vet);
+    
     }
 
     /**

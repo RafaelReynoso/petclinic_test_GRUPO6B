@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -27,7 +28,7 @@ public class VetServiceImpl implements VetService{
      */
     @Override
     public Vet create(Vet vet) {
-        return null;
+        return vetRepository.save(vet);
     }
 
     /**
@@ -57,7 +58,13 @@ public class VetServiceImpl implements VetService{
      */
     @Override
     public Vet findById(Integer id) throws VetNotFoundException {
-        return null;
+
+        Optional<Vet> vet = vetRepository.findById(id);
+
+        if ( !vet.isPresent())
+            throw new VetNotFoundException("Vet not found...!");
+
+        return vet.get();
     }
 
     /**
@@ -82,11 +89,21 @@ public class VetServiceImpl implements VetService{
      */
     @Override
     public List<Vet> findByLastname(String lastname) {
-        return null;
+    	
+    	List<Vet> vets = vetRepository.findByLastname(lastname);
+    	vets.stream().forEach(vet -> log.info("" + vet));
+    	
+    	return vets;
     }
+    
+    /**
+	 *
+	 * @return
+	 */
 
     @Override
     public List<Vet> findAll() {
-        return null;
+    	
+        return (List<Vet>) vetRepository.findAll();
     }
 }

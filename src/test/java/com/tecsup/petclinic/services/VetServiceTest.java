@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 class VetServiceTest {
 	
 	@Autowired
-    private PetService petService;
+    private VetService VetService;
 
 	@Test
 	void testCreate() {

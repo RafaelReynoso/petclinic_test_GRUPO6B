@@ -36,7 +36,7 @@ public class VetServiceImpl implements VetService{
      */
     @Override
     public Vet update(Vet vet) {
-        return null;
+        return vetRepository.save(vet);
     }
 
     /**

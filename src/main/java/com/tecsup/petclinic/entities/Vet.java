@@ -12,9 +12,9 @@ public class Vet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "name")
+    @Column(name = "first_name")
     private String name;
-    @Column(name = "lastname")
+    @Column(name = "last_name")
     private String lastname;
 
     public Vet() {

@@ -1,5 +1,6 @@
 package com.tecsup.petclinic.services;
 
+import com.tecsup.petclinic.entities.Pet;
 import com.tecsup.petclinic.entities.Vet;
 import com.tecsup.petclinic.exception.PetNotFoundException;
 import com.tecsup.petclinic.exception.VetNotFoundException;
@@ -8,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -26,7 +28,7 @@ public class VetServiceImpl implements VetService{
      */
     @Override
     public Vet create(Vet vet) {
-        return null;
+        return vetRepository.save(vet);
     }
 
     /**
@@ -56,7 +58,13 @@ public class VetServiceImpl implements VetService{
      */
     @Override
     public Vet findById(Integer id) throws VetNotFoundException {
-        return null;
+
+        Optional<Vet> vet = vetRepository.findById(id);
+
+        if ( !vet.isPresent())
+            throw new VetNotFoundException("Vet not found...!");
+
+        return vet.get();
     }
 
     /**

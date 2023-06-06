@@ -2,10 +2,14 @@ package com.tecsup.petclinic.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-class VetServiceTest {
+import com.tecsup.petclinic.entities.Vet;
+
+public class VetServiceTest {
 	
 	@Autowired
     private VetService VetService;
@@ -37,7 +41,12 @@ class VetServiceTest {
 
 	@Test
 	void testFindByLastname() {
-		fail("Not yet implemented");
+		String FIND_LASTNAME = "Carter";
+        int SIZE_EXPECTED = 1;
+
+        List<Vet> vets = this.VetService.findByLastname(FIND_LASTNAME);
+
+        assertEquals(SIZE_EXPECTED, vets.size());
 	}
 
 	@Test

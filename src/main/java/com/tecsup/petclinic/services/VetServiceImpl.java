@@ -1,5 +1,6 @@
 package com.tecsup.petclinic.services;
 
+import com.tecsup.petclinic.entities.Pet;
 import com.tecsup.petclinic.entities.Vet;
 import com.tecsup.petclinic.exception.PetNotFoundException;
 import com.tecsup.petclinic.exception.VetNotFoundException;
@@ -66,7 +67,12 @@ public class VetServiceImpl implements VetService{
      */
     @Override
     public List<Vet> findByName(String name) {
-        return null;
+
+		List<Vet> vets = vetRepository.findByName(name);
+
+		vets.stream().forEach(vet -> log.info("" + vet));
+
+		return vets;
     }
 
     /**

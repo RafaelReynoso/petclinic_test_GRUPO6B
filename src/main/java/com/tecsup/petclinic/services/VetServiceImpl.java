@@ -84,11 +84,21 @@ public class VetServiceImpl implements VetService{
      */
     @Override
     public List<Vet> findByLastname(String lastname) {
-        return null;
+    	
+    	List<Vet> vets = vetRepository.findByLastname(lastname);
+    	vets.stream().forEach(vet -> log.info("" + vet));
+    	
+    	return vets;
     }
+    
+    /**
+	 *
+	 * @return
+	 */
 
     @Override
     public List<Vet> findAll() {
-        return null;
+    	
+        return (List<Vet>) vetRepository.findAll();
     }
 }

@@ -6,28 +6,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 
-import com.tecsup.petclinic.entities.Pet;
+
 import com.tecsup.petclinic.entities.Vet;
-import com.tecsup.petclinic.exception.PetNotFoundException;
 import com.tecsup.petclinic.exception.VetNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-
-import com.tecsup.petclinic.entities.Vet;
-
-
-import com.tecsup.petclinic.entities.Pet;
-import com.tecsup.petclinic.entities.Vet;
-import com.tecsup.petclinic.exception.PetNotFoundException;
-import com.tecsup.petclinic.exception.VetNotFoundException;
-
-import com.tecsup.petclinic.entities.Vet;
-
-class VetServiceTest {
 
 @SpringBootTest
 @Slf4j
@@ -37,7 +23,7 @@ public class VetServiceTest {
     private VetService VetService;
 
 	@Test
-	void testCreate() {
+	public void testCreate() {
 		String VET_NAME = "Rocio";
 		String VET_LASTNAME = "Duarte";
 
@@ -53,9 +39,8 @@ public class VetServiceTest {
 	}
 
 	@Test
-	void testUpdate() {
-		
-		
+	public void testUpdate() {
+
         String VET_NAME = "Helen";
         String VET_LASTNAME = "Leary";
         
@@ -113,10 +98,11 @@ public class VetServiceTest {
 	        } catch (VetNotFoundException e) {
 	            assertTrue(true);
 	        }
+	}
 	        
 
 	@Test
-	void testFindById() {
+		public void testFindById() {
 		Integer ID = 1;
 		String VET_NAME = "James";
 		Vet vet = null;
@@ -143,7 +129,7 @@ public class VetServiceTest {
 
 
 	@Test
-	void testFindByLastname() {
+	public void testFindByLastname() {
 		String FIND_LASTNAME = "Carter";
         int SIZE_EXPECTED = 1;
 
@@ -151,10 +137,20 @@ public class VetServiceTest {
 
         assertEquals(SIZE_EXPECTED, vets.size());
 	}
-	
-	
+
+	@Test
+	public void testFindAll(){
+
+		List<Vet> realData = VetService.findAll();
+		assertNotNull(realData);
+		int expectedDataCount = 6;
+		assertEquals(expectedDataCount, realData.size());
+
 	}
 
-
-
+	
+	
 }
+
+
+

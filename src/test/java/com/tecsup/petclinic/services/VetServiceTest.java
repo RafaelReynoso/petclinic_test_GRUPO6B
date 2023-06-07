@@ -2,25 +2,24 @@ package com.tecsup.petclinic.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-<<<<<<< HEAD
+
 import java.util.List;
 
-=======
+
 import com.tecsup.petclinic.entities.Pet;
 import com.tecsup.petclinic.entities.Vet;
 import com.tecsup.petclinic.exception.PetNotFoundException;
 import com.tecsup.petclinic.exception.VetNotFoundException;
 import lombok.extern.slf4j.Slf4j;
->>>>>>> 85b3f18476a4c495ca8037d332aec3bf4880f38b
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import com.tecsup.petclinic.entities.Vet;
 
-=======
+
 import com.tecsup.petclinic.entities.Pet;
 import com.tecsup.petclinic.entities.Vet;
 import com.tecsup.petclinic.exception.PetNotFoundException;
@@ -29,13 +28,10 @@ import com.tecsup.petclinic.exception.VetNotFoundException;
 import com.tecsup.petclinic.entities.Vet;
 
 class VetServiceTest {
->>>>>>> ff07f42e15b88fcb16c228aa056b0220f418bf85
-=======
+
 @SpringBootTest
 @Slf4j
->>>>>>> 85b3f18476a4c495ca8037d332aec3bf4880f38b
 public class VetServiceTest {
->>>>>>> 85b3f18476a4c495ca8037d332aec3bf4880f38b
 	
 	@Autowired
     private VetService VetService;
@@ -155,10 +151,10 @@ public class VetServiceTest {
 
         assertEquals(SIZE_EXPECTED, vets.size());
 	}
-
-	@Test
-	void testFindAll() {
-		fail("Not yet implemented");
+	
+	
 	}
+
+
 
 }

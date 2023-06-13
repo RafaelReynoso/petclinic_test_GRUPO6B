@@ -41,5 +41,26 @@ public class VetControllerTest {
 
     }
 
+    @Test
+    public void testFindVetOK() throws Exception {
 
+        String NAME_VET = "James";
+        String LASTNAME_VET = "Carter";
+
+        mockMvc.perform(get("/vets/1"))  // Object must be BASIL
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.name", is(NAME_VET)))
+                .andExpect(jsonPath("$.lastname", is(LASTNAME_VET)));
+    }
+
+    @Test
+    public void testFindVetKO() throws Exception {
+
+        mockMvc.perform(get("/vets/666"))
+                .andExpect(status().isNotFound());
+
+    }
 }

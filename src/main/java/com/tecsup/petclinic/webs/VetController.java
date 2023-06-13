@@ -47,12 +47,13 @@ public class VetController {
 
     }
 
+
     @PutMapping(value = "/vets/{id}")
-    ResponseEntity<VetTO> update(@RequestBody VetTO vetTO, @PathVariable Integer id){
+    ResponseEntity<VetTO> update(@RequestBody VetTO vetTO, @PathVariable Integer id) {
 
         VetTO updateVetTO = null;
 
-        try{
+        try {
 
             Vet updateVet = vetService.findById(id);
 
@@ -60,16 +61,29 @@ public class VetController {
             updateVet.setLastname(vetTO.getLast_name());
 
 
-
             vetService.update(updateVet);
 
             updateVetTO = this.mapper.toVetTO(updateVet);
 
-        }catch (VetNotFoundException e ){
+        } catch (VetNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
 
         return ResponseEntity.ok(updateVetTO);
 
+
     }
+
+    @DeleteMapping(value = "/vets/{id}")
+    ResponseEntity<String> delete(@PathVariable Integer id) {
+
+        try {
+            vetService.delete(id);
+            return ResponseEntity.ok(" Delete ID :" + id);
+        } catch (VetNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
 }

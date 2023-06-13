@@ -47,7 +47,18 @@ public class VetController {
 
     }
 
-
+    @GetMapping(value = "/vets/{id}")
+    ResponseEntity<VetTO> findById(@PathVariable Integer id) {
+        VetTO vetTO = null;
+        try {
+            Vet vet = vetService.findById(id);
+            vetTO = this.mapper.toVetTO(vet);
+        } catch (VetNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(vetTO);
+    }
+    
     @PutMapping(value = "/vets/{id}")
     ResponseEntity<VetTO> update(@RequestBody VetTO vetTO, @PathVariable Integer id) {
 

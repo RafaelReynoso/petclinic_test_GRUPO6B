@@ -3,6 +3,7 @@ package com.tecsup.petclinic.webs;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
 import com.tecsup.petclinic.domain.VetTO;
+import com.tecsup.petclinic.entities.Vet;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,4 +64,24 @@ public class VetControllerTest {
                 .andExpect(status().isNotFound());
 
     }
+
+    @Test
+    public void testCreateVet() throws Exception {
+
+        String NAME_VET = "Rafael";
+        String LASTNAME_VET = "Reynoso";
+
+        VetTO newVetTO = new VetTO();
+        newVetTO.setFirst_name(NAME_VET);
+        newVetTO.setLast_name(LASTNAME_VET);
+
+        mockMvc.perform(post("/pets")
+                .content(om.writeValueAsString(newVetTO))
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.first_name", is(NAME_VET)))
+                .andExpect(jsonPath("$.last_name", is(LASTNAME_VET)));
+    }
+    
 }

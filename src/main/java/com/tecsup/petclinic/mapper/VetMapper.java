@@ -18,14 +18,14 @@ public interface VetMapper {
         Vet toVet(VetTO vetTO);
 
     @Mapping(source = "first_name", target = "first_name")
-        VetTO tovetTO(Vet vet);
+        VetTO toVetTO(Vet vet);
 
 
 
 
 
     List<VetTO> toVetTOList(List<Vet> vetList);
-    List<Vet> toVetList(List<VetTO> petTOList);
+    List<Vet> toVetList(List<VetTO> vetTOList);
 
 
 

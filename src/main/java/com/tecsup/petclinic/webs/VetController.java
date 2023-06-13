@@ -5,9 +5,9 @@ import com.tecsup.petclinic.entities.Vet;
 import com.tecsup.petclinic.mapper.VetMapper;
 import com.tecsup.petclinic.services.VetService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +33,16 @@ public class VetController {
         vetsTo.forEach(item -> log.info("vetsTo >>  {} ", item));
 
         return ResponseEntity.ok(vetsTo);
+    }
+
+    @PostMapping(value = "/vets")
+    @ResponseStatus(HttpStatus.CREATED)
+    ResponseEntity<VetTO> create(@RequestBody VetTO vetTO){
+
+        Vet newVet = this.mapper.toVet(vetTO);
+        VetTO newVetTO = this.mapper.toVetTO(vetService.create(newVet));
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(newVetTO);
+
     }
 }

@@ -2,6 +2,7 @@ package com.tecsup.petclinic.webs;
 
 import com.tecsup.petclinic.domain.VetTO;
 import com.tecsup.petclinic.entities.Vet;
+import com.tecsup.petclinic.exception.VetNotFoundException;
 import com.tecsup.petclinic.mapper.VetMapper;
 import com.tecsup.petclinic.services.VetService;
 import lombok.extern.slf4j.Slf4j;
@@ -44,5 +45,16 @@ public class VetController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(newVetTO);
 
+    }
+
+    @DeleteMapping(value = "/vets/{id}")
+    ResponseEntity<String> delete(@PathVariable Integer id) {
+
+        try {
+            vetService.delete(id);
+            return ResponseEntity.ok(" Delete ID :" + id);
+        } catch (VetNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

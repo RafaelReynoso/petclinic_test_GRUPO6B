@@ -53,8 +53,8 @@ public class VetControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.name", is(NAME_VET)))
-                .andExpect(jsonPath("$.lastname", is(LASTNAME_VET)));
+                .andExpect(jsonPath("$.first_name", is(LASTNAME_VET)))
+                .andExpect(jsonPath("$.last_name", is(NAME_VET)));
     }
 
     @Test

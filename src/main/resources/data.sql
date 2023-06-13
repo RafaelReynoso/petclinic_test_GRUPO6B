@@ -15,3 +15,10 @@ VALUES
 (11, 'Freddy', '2000-03-09', 5, 9),
 (12, 'Lucky', '2000-06-24', 2, 10),
 (13, 'Sly', '2002-06-08', 1, 10);
+
+INSERT INTO vets VALUES (1, 'James', 'Carter');
+INSERT INTO vets VALUES (2, 'Helen', 'Leary');
+INSERT INTO vets VALUES (3, 'Linda', 'Douglas');
+INSERT INTO vets VALUES (4, 'Rafael', 'Ortega');
+INSERT INTO vets VALUES (5, 'Henry', 'Stevens');
+INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins');

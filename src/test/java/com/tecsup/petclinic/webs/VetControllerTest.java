@@ -83,5 +83,28 @@ public class VetControllerTest {
                 .andExpect(jsonPath("$.first_name", is(NAME_VET)))
                 .andExpect(jsonPath("$.last_name", is(LASTNAME_VET)));
     }
-    
+    public void testDeleteVet() throws Exception {
+           String NAME_VET = "James";
+           String LASTNAME_VET = "Carter";
+
+        VetTO newVetTO = new VetTO();
+        newVetTO.setFirst_name(NAME_VET);
+        newVetTO.setLast_name(LASTNAME_VET);
+
+
+        ResultActions mvcActions = mockMvc.perform(post("/vets")
+                        .content(om.writeValueAsString(newVetTO))
+                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isCreated());
+
+        String response = mvcActions.andReturn().getResponse().getContentAsString();
+
+        Integer id = JsonPath.parse(response).read("$.id");
+
+        mockMvc.perform(delete("/vets/" + id ))
+                /*.andDo(print())*/
+                .andExpect(status().isOk());
+    }
+
 }

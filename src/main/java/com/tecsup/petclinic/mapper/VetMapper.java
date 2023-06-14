@@ -15,10 +15,15 @@ public interface VetMapper {
     VetMapper INSTANCE = Mappers.getMapper(VetMapper.class);
 
     @Mapping(source = "first_name", target = "name")
+    @Mapping(source = "last_name", target = "lastname")
         Vet toVet(VetTO vetTO);
 
     @Mapping(source = "name", target = "first_name")
+    @Mapping(source = "lastname", target = "last_name")
         VetTO toVetTO(Vet vet);
+
+
+
 
 
 

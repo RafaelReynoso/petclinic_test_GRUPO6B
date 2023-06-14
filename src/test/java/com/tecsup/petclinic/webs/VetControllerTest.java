@@ -75,7 +75,7 @@ public class VetControllerTest {
         newVetTO.setFirst_name(NAME_VET);
         newVetTO.setLast_name(LASTNAME_VET);
 
-        mockMvc.perform(post("/pets")
+        mockMvc.perform(post("/vets")
                 .content(om.writeValueAsString(newVetTO))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -83,6 +83,7 @@ public class VetControllerTest {
                 .andExpect(jsonPath("$.first_name", is(NAME_VET)))
                 .andExpect(jsonPath("$.last_name", is(LASTNAME_VET)));
     }
+    @Test
     public void testDeleteVet() throws Exception {
            String NAME_VET = "James";
            String LASTNAME_VET = "Carter";
